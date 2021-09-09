@@ -1,0 +1,27 @@
+{
+  "name": "purescript-smash",
+  "version": "1.0.0",
+  "description": "Extensible coeffects using comonads and Day convolution.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikesol/purescript-smash.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikesol/purescript-smash/issues"
+  },
+  "homepage": "https://github.com/mikesol/purescript-smash#readme",
+  "devDependencies": {
+    "purescript": "^0.14.4",
+    "spago": "^0.20.3"
+  }
+}

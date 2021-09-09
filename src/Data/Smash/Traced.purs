@@ -8,19 +8,19 @@ import Prelude
 import Control.Comonad.Traced.Class (class ComonadTraced, track)
 import Data.Functor.Pairing.Co (Co)
 import Data.Smash as S
-import Data.Symbol (class IsSymbol, SProxy(..))
+import Data.Symbol (class IsSymbol)
 import Prim.Row as Row
-import Type.Proxy (Proxy2)
-import Type.Row (class RowToList)
+import Type.Proxy (Proxy(..))
+import Prim.RowList (class RowToList)
 
 tellWith
   :: forall l w r rl rest a
    . ComonadTraced a w
   => IsSymbol l
-  => Row.Cons l (Proxy2 w) rest r
+  => Row.Cons l (Proxy w) rest r
   => RowToList rest rl
   => S.ComonadSmash rl rest
-  => SProxy l
+  => Proxy l
   -> a
   -> Co (S.Smash r) Unit
 tellWith l val = S.cosmash_ l (track val)
@@ -31,5 +31,5 @@ tell
   => RowToList r rl
   => S.ComonadSmash rl r
   => a
-  -> Co (S.Smash (traced :: Proxy2 w | r)) Unit
-tell = tellWith (SProxy :: SProxy "traced")
+  -> Co (S.Smash (traced :: Proxy w | r)) Unit
+tell = tellWith (Proxy :: Proxy "traced")

@@ -15,18 +15,18 @@ import Data.Functor.Day.Profunctor (class Profunctor, class Strong, Lens, Optic,
 import Data.Functor.Pairing.Co (Co, co, runCo)
 import Data.Identity (Identity)
 import Data.Smash (Smash, Uncons(..), cons, uncons)
-import Data.Symbol (class IsSymbol, SProxy)
+import Data.Symbol (class IsSymbol)
 import Prim.Row as Row
-import Type.Proxy (Proxy2)
+import Type.Proxy (Proxy)
 
 -- | A `Lens` which focuses on the specified label in a `Smash` product.
 label
   :: forall l s t a b rest
    . IsSymbol l
   => Functor b
-  => Row.Cons l (Proxy2 a) rest s
-  => Row.Cons l (Proxy2 b) rest t
-  => SProxy l
+  => Row.Cons l (Proxy a) rest s
+  => Row.Cons l (Proxy b) rest t
+  => Proxy l
   -> Lens (Smash s) (Smash t) a b
 label l = lens \s -> runExists go (uncons l s) where
   go :: forall x y. Uncons a rest x y -> (a ⊗ Hom b (Smash t)) x
